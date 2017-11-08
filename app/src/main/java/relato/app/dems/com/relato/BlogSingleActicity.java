@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -90,8 +92,38 @@ public class BlogSingleActicity extends AppCompatActivity {
         Toast.makeText(BlogSingleActicity.this,""+mPost_key,Toast.LENGTH_SHORT).show();
         Log.v("clicks","click"+mPost_key);*/
     }
+    public void share(View v) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                "Esta app te hará sufrir un infarto con sus Sangrientas Lecturas, Descargala YA!!: https://play.google.com/store/apps/details?id=relato.app.dems.com.relato&rdid=relato.app.dems.com.relato");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
 
+    public void letraMas(View v) {
+        mPostTitleDetails = (TextView) findViewById(R.id.postTitleDetails);
+        mPostDescDetails = (TextView) findViewById(R.id.postDescDetails);
 
+        int valorLetraDes = (int) mPostDescDetails.getTextSize();
+
+        if(valorLetraDes < 38){
+            int aumentar = valorLetraDes +10;
+            Log.v("tts","tt"+valorLetraDes);
+            mPostTitleDetails.setTextSize(aumentar);
+            mPostDescDetails.setTextSize(TypedValue.COMPLEX_UNIT_SP,mPostDescDetails.getTextSize()+1);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            //this.moveTaskToBack(true);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     private void setToolbar(String title) {
         // Añadir la Toolbar

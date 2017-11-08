@@ -2,6 +2,7 @@ package relato.app.dems.com.relato;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import relato.app.dems.com.relato.Front.FrontDetails;
 
 public class FeedRelatos extends AppCompatActivity {
 
@@ -48,9 +52,6 @@ public class FeedRelatos extends AppCompatActivity {
 
         setToolbar();
 
-
-
-
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase.keepSynced(true);
 
@@ -60,18 +61,28 @@ public class FeedRelatos extends AppCompatActivity {
         mBlogList = (RecyclerView) findViewById(R.id.feed_relatos_list);
         mBlogList.setHasFixedSize(true);
 
-        mDatabaseHeader.child("header").addValueEventListener(new ValueEventListener() {
+
+
+        mDatabaseHeader.child("portada").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                String post_image = (String) dataSnapshot.child("image").getValue();
+                String post_image = (String) dataSnapshot.child("images").getValue();
 
                 ImageView image_paralax_header_relato = (ImageView) findViewById(R.id.image_paralax_header_relato);
 
                 image_paralax_header_relato.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        } else {
 
+
+                            Intent singleBlogIntent = new Intent(FeedRelatos.this,FrontDetails.class);
+                            startActivity(singleBlogIntent);
+
+                        }
                     }
                 });
 
@@ -93,11 +104,30 @@ public class FeedRelatos extends AppCompatActivity {
         //GridLayoutManager mLayout = new GridLayoutManager(FeedRelatos.this,3);
         //mLayout.setReverseLayout(true);
         //mLayout.setStackFromEnd(true);
-        mBlogList.setLayoutManager(new GridLayoutManager(this,3,LinearLayoutManager.VERTICAL, true));
+
+        mBlogList.setLayoutManager(new GridLayoutManager(this,3));
+        //mBlogList.setLayoutManager(new GridLayoutManager(this,3,LinearLayoutManager.VERTICAL, true));
 
 
 
 
+
+
+
+
+        /*
+        Log.v("toma",""+mDatabaseHeader.child("portada").child("img"));
+  @Override
+        public ItemFeed getItem(int pos) {
+            return super.getItem(getCount() - 1 - pos);
+        }
+
+
+        ImageView image_paralax_header_relato = (ImageView) findViewById(R.id.image_paralax_header_relato);
+        Glide.with(this)
+                .load("http://bloghorror.com/wp-content/uploads/2017/03/yami20shibai20-20animes20de20terror.jpg")
+                .into(image_paralax_header_relato);
+*/
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setSize(8);
 
@@ -149,6 +179,29 @@ public class FeedRelatos extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+    public void share(View v) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                "Esta app te hará sufrir un infarto con sus Sangrientas Lecturas, Descargala YA!!: https://play.google.com/store/apps/details?id=relato.app.dems.com.relato&rdid=relato.app.dems.com.relato");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
+    public void score(View v) {
+        Intent intent1 = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("market://details?id="
+                        + FeedRelatos.this.getPackageName()));
+        startActivity(intent1);
+    }
+
+
 
     @Override
     protected void onStart() {

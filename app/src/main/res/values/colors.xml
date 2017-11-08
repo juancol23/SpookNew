@@ -3,10 +3,12 @@
     <color name="a">#3F51B5</color>
     <color name="s">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentPress">#e11c5f</color>
     <color name="white">#FFf</color>
 
 
     <color name="gray">#c2c2c2</color>
+
     <color name="black">#000000</color>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
