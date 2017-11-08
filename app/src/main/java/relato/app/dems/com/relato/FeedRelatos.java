@@ -93,16 +93,11 @@ public class FeedRelatos extends AppCompatActivity {
         //GridLayoutManager mLayout = new GridLayoutManager(FeedRelatos.this,3);
         //mLayout.setReverseLayout(true);
         //mLayout.setStackFromEnd(true);
-        mBlogList.setLayoutManager(new GridLayoutManager(this,3));
-/*
-        Log.v("toma",""+mDatabaseHeader.child("portada").child("img"));
+        mBlogList.setLayoutManager(new GridLayoutManager(this,3,LinearLayoutManager.VERTICAL, true));
 
 
-        ImageView image_paralax_header_relato = (ImageView) findViewById(R.id.image_paralax_header_relato);
-        Glide.with(this)
-                .load("http://bloghorror.com/wp-content/uploads/2017/03/yami20shibai20-20animes20de20terror.jpg")
-                .into(image_paralax_header_relato);
-*/
+
+
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setSize(8);
 
