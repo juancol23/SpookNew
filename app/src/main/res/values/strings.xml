@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sangrienta Lectura</string>
+
+
+    <string name="girl_ipsum">
+        Morbi posuere lorem nec elit dapibus, vitae accumsan mauris pellentesque.
+        Vestibulum a lobortis mi. Vestibulum lacinia molestie semper. Pellentesque
+        ultrices arcu lacus, interdum moll
+    </string>
+</resources>

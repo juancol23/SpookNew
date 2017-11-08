@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "511185414849",
+    "firebase_url": "https://feed-a5fed.firebaseio.com",
+    "project_id": "feed-a5fed",
+    "storage_bucket": "feed-a5fed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511185414849:android:19665a8d3518102f",
+        "android_client_info": {
+          "package_name": "relato.app.dems.com.relato"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511185414849-331pi05c0k6jpmee7v246di8hha4s0ji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "relato.app.dems.com.relato",
+            "certificate_hash": "730958c315f0b4ec7067d436f41c24a03379476a"
+          }
+        },
+        {
+          "client_id": "511185414849-1jidab7ibssnk1brkhqguqpo6n2l1ak0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvcb4LIMX__qAXeQT8n63tEcmgXmb4l-8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511185414849-1jidab7ibssnk1brkhqguqpo6n2l1ak0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
