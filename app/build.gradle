@@ -4,10 +4,10 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "relato.app.dems.com.relato"
+        applicationId 'relato.app.dems.com.relato.beta'
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 2
+        versionCode 6
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -17,7 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
         exclude 'META-INF/NOTICE' // will not include NOTICE file
         exclude 'META-INF/LICENSE' // will not include LICENSE file
@@ -30,8 +29,8 @@ android {
         exclude 'META-INF/license.txt'
         pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
     }
-
-
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -39,16 +38,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
-
-
-
     //Libreria lottie
     compile 'com.airbnb.android:lottie:2.2.5'
-
     compile 'com.github.clans:fab:1.6.4'
-
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "511185414849",
-    "firebase_url": "https://feed-a5fed.firebaseio.com",
-    "project_id": "feed-a5fed",
-    "storage_bucket": "feed-a5fed.appspot.com"
+    "project_number": "435758710600",
+    "firebase_url": "https://relatos-9cbdc.firebaseio.com",
+    "project_id": "relatos-9cbdc",
+    "storage_bucket": "relatos-9cbdc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:511185414849:android:19665a8d3518102f",
+        "mobilesdk_app_id": "1:435758710600:android:5d8d9847836fd1f1",
         "android_client_info": {
-          "package_name": "relato.app.dems.com.relato"
+          "package_name": "relato.app.dems.com.relato.beta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "511185414849-331pi05c0k6jpmee7v246di8hha4s0ji.apps.googleusercontent.com",
+          "client_id": "435758710600-0a8h2c3vmmk924msb79b2362a8334s71.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "relato.app.dems.com.relato",
+            "package_name": "relato.app.dems.com.relato.beta",
             "certificate_hash": "730958c315f0b4ec7067d436f41c24a03379476a"
           }
         },
         {
-          "client_id": "511185414849-1jidab7ibssnk1brkhqguqpo6n2l1ak0.apps.googleusercontent.com",
+          "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBvcb4LIMX__qAXeQT8n63tEcmgXmb4l-8"
+          "current_key": "AIzaSyBPRrXKkvJ_hi2xlbdZb_nZbB7V7FTJwsk"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "511185414849-1jidab7ibssnk1brkhqguqpo6n2l1ak0.apps.googleusercontent.com",
+              "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

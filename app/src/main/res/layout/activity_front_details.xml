@@ -92,7 +92,6 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-
         <!-- App Bar -->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
@@ -169,6 +168,15 @@
             android:src="@mipmap/ic_share"
             android:onClick="share"
             fab:fab_label="Compartir"
+            style="@style/MenuButtonsStyle" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabascoreFront"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_star_half"
+            android:onClick="scoreFront"
+            fab:fab_label="Calificar"
             style="@style/MenuButtonsStyle" />
 
         <com.github.clans.fab.FloatingActionButton

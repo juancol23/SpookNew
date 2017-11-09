@@ -167,8 +167,6 @@
         fab:menu_colorPressed="@color/colorAccentPress"
         fab:menu_colorRipple="@color/colorAccent"
         fab:menu_labels_ellipsize="end"
-
-        fab:menu_backgroundColor="#ccffffff"
         fab:menu_labels_singleLine="true">
 
         <com.github.clans.fab.FloatingActionButton
@@ -178,6 +176,15 @@
             android:src="@mipmap/ic_share"
             android:onClick="share"
             fab:fab_label="Compartir"
+            style="@style/MenuButtonsStyle" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabscoreBlogDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_star_half"
+            android:onClick="scoreBlogDetails"
+            fab:fab_label="Calificar"
             style="@style/MenuButtonsStyle" />
 
         <com.github.clans.fab.FloatingActionButton
