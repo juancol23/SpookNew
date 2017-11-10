@@ -7,7 +7,7 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
 
-    tools:context="relato.app.dems.com.relato.FeedRelatos">
+    tools:context="relato.app.dems.com.relato.beta.FeedRelatos">
 
 
 
@@ -46,7 +46,7 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|enterAlways">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <!-- Imagen del detalle -->
                 <ImageView

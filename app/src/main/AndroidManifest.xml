@@ -33,7 +33,7 @@
             android:theme="@style/AppTheme.TranslucentSystemBars">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="relato.app.dems.com.relato.FeedRelatos" />
+                android:value="relato.app.dems.com.relato.beta.FeedRelatos" />
         </activity>
         <activity android:name=".FeedRelatos">
             <intent-filter>
@@ -43,7 +43,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Launch"></activity>
-        <activity android:name=".Front.FrontDetails"></activity>
+        <activity android:name=".Front.FrontDetails"
+                  android:parentActivityName=".Feed"
+                  android:theme="@style/AppTheme.TranslucentSystemBars">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="relato.app.dems.com.relato.beta.FeedRelatos" />
+        </activity>
     </application>
 
 </manifest>
