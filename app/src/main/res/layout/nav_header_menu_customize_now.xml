@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:gravity="center"
+    android:background="@mipmap/fondo_c"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <Button
+        android:id="@+id/btn_inicia_sesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Personalizar Perfil"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/black"
+        android:textColor="@color/white"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/menu_profile_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:src="@mipmap/ic_launcher"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/menu_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="Spook"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/menu_profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Coins"
+        android:textColor="#e6e4e4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesion"
+        android:visibility="gone"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:id="@+id/btnSignOut"/>
+
+        <ImageView
+            android:id="@+id/image_video"
+            android:background="@mipmap/ic_coins"
+            android:tint="@color/white"
+            android:onClick="startVideoAds"
+            android:visibility="gone"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            />
+
+</LinearLayout>

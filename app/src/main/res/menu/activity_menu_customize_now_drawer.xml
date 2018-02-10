@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+ >
+                    <item
+                        android:id="@+id/nav_inicio"
+                        android:icon="@mipmap/ic_spooky"
+                        android:title="Inicio" />
+
+                    <item
+                        android:id="@+id/nav_creepypastas"
+                        android:icon="@mipmap/ic_creepy"
+                        android:visible="false"
+                        android:title="Terror" />
+
+                    <item
+                        android:id="@+id/nav_apariciones"
+                        android:icon="@drawable/fab_add"
+                        android:title="Publicar Lectura" />
+
+                    <item
+                        android:id="@+id/nav_fantasmas"
+                        android:icon="@mipmap/ic_fantasma"
+                        android:visible="false"
+                        android:title="Fantasmas" />
+
+                    <item
+                        android:id="@+id/nav_leyendas_urbanas"
+                        android:icon="@mipmap/ic_legen"
+                        android:visible="false"
+
+                        android:title="Leyendas Urbanas" />
+
+                    <item
+                        android:id="@+id/nav_episodios_perdidos"
+                        android:icon="@mipmap/ic_lost"
+                        android:visible="false"
+                        android:title="Episodios Perdidos" />
+
+                    <item
+                        android:id="@+id/nav_asesinos_seriales"
+                        android:icon="@mipmap/ic_killer"
+                        android:visible="false"
+
+                        android:title="Asesinos Seriales" />
+                    <item
+                        android:id="@+id/nav_misticas"
+                        android:icon="@mipmap/ic_mystica"
+                        android:visible="false"
+                        android:title="Místicas" />
+
+
+
+
+                    <item
+                        android:id="@+id/nav_creaciones"
+                        android:icon="@mipmap/ic_creation"
+                        android:title="Mis Creaciones" />
+
+                    <item
+                        android:id="@+id/nav_favorite"
+                        android:icon="@mipmap/ic_star_half"
+                        android:title="Favoritos" />
+
+
+                    <item
+                        android:id="@+id/nav_notificaciones"
+                        android:icon="@mipmap/ic_notification"
+                        android:title="Notificaciones" />
+
+                  <item
+                        android:id="@+id/nav_configuracion"
+                        android:icon="@drawable/ic_setting"
+                        android:title="Configuración" />
+
+
+    <item android:title="Communicate">
+        <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@mipmap/ic_logout"
+                    android:title="Cerrar Sesión" />
+        </group>
+    </item>
+
+
+</menu>
+

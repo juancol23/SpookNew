@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="relato.app.dems.com.relato.beta.View.Postear.RandomCoins">
+
+    <TextView
+        android:id="@+id/saldo_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saldo Actual"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:textColorHint="@color/white"
+            android:layout_below="@+id/saldo_all"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/random_apuesta"
+                android:hint="Ingrese su apuesta:"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:inputType="number"
+                android:textSize="22sp"
+                android:layout_marginBottom="25dp"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    <ImageView
+        android:id="@+id/duplicarMoneda"
+        android:layout_width="228dp"
+        android:layout_height="228dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/ic_moneda" />
+
+
+    <TextView
+        android:id="@+id/random_ganaste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="Ganaste:"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/duplicarMoneda"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

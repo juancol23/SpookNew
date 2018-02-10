@@ -7,5 +7,4 @@
         android:title="Add Post"
         app:showAsAction="always" />
 
-
 </menu>

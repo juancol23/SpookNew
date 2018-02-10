@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="175dp"
+    android:layout_height="170dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="0dp"
 
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
 
     android:id="@+id/relative_item_recycler_design"
     android:orientation="vertical">
@@ -11,6 +15,7 @@
     <ImageView
         android:id="@+id/item_recycler_design_imagen"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
@@ -26,24 +31,29 @@
         android:id="@+id/item_recycler_design_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:text="Los Secretos de Roselí"
+        android:gravity="left"
+        android:text="Vida y Muerte"
         android:textColor="@color/white"
-        android:paddingBottom="0dp"
-        android:textSize="20sp" />
+        android:layout_marginLeft="8dp"
+        android:layout_above="@+id/item_recycler_design_category"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/item_recycler_design_desc"
+        android:id="@+id/item_recycler_design_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="8dp"
+        android:text="Terror by Sangrienta Lectura"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:text="Los Secretos de Roselí"
+        android:layout_marginBottom="10dp"
+        android:textColor="#dadada"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/item_recycler_design_desc"
         android:visibility="gone"
-        android:textColor="@color/white"
-        android:paddingBottom="50dp"
-        android:textSize="15sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 

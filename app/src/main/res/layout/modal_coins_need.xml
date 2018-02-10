@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+
+    android:background="@color/black"
+    tools:context=".MenuCustomizeNow">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="220dp"
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:background="@color/red">
+
+
+        <TextView
+            android:id="@+id/modal_coins_need_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nueva Actualización"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp"/>
+
+
+        <TextView
+            android:id="@+id/modal_coins_need_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Gana moneda gratis mirando un video anuncio, y usa las monedas para personalizar la apliación"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/modal_coins_need_ver_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver Video"
+                android:background="@drawable/modal_message_buttom_white_br"
+                android:layout_weight=".5"
+                android:textColor="#3b3b3b"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:id="@+id/modal_coins_need_salir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/modal_message_buttom_white_br"
+                android:textColor="#3b3b3b"
+                android:text="Salir"
+                android:layout_weight=".5"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

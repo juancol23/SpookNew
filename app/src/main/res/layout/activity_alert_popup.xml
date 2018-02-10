@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    tools:context=".View.Util.AlertPopup.AlertPopup">
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Cerrar"
+       android:gravity="center|center_vertical"
+       android:textColor="@color/white"
+       android:textSize="16sp"
+       />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:paddingRight="20dp">
+            <ImageView
+                android:id="@+id/popup_image"
+                android:layout_width="match_parent"
+                android:background="@color/azulnegro"
+                android:layout_height="200dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/black"
+                android:alpha="0.2">
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:text="Descargar Ahora"
+                android:textSize="25sp"
+                android:id="@+id/popup_title"
+                android:layout_marginTop="200dp"
+                android:layout_below="@id/popup_image"
+                android:textColor="@color/white"
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popup_title"
+                android:textColor="#c2c2c2"
+                android:gravity="left"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:id="@+id/popup_resumen"
+                android:text="Para escuchar este relato necesita hacer click en el boton de Inciar Descarga"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/popup_read"
+                android:text="Inciar Descarga"
+                android:textSize="15sp"
+                android:textColor="@color/red"
+                android:layout_below="@+id/popup_resumen"
+                android:background="@drawable/sign_cuenta"
+                android:layout_marginTop="27dp" />
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Aceptar"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_below="@+id/popup_resumen"
+                android:textColor="@color/white"
+                />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

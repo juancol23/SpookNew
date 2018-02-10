@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/profile_background"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:id="@+id/relative_profile_customize"
+    tools:context="relato.app.dems.com.relato.beta.View.Profile.Profile">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:orientation="vertical"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photoProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="30dp"
+            app:civ_border_width="2dp"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/white"/>
+
+        <TextView
+            android:id="@+id/nameProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Name"
+            android:layout_marginTop="@dimen/profile_margin_top_spacing"
+
+            android:gravity="center"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:id="@+id/emailProfile"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_details_desc"
+
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_marginTop="@dimen/profile_margin_top_spacing"
+
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_weight=".5"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/customizeRed"
+            android:background="@color/red"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/customizeAzulNegro"
+            android:background="@color/com_facebook_blue"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/customizeBlack"
+            android:background="@color/black"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+</RelativeLayout>

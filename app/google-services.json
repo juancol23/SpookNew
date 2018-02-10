@@ -49,6 +49,94 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435758710600:android:29a7683244ae6494",
+        "android_client_info": {
+          "package_name": "com.creepypastas.valdemar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435758710600-297846lba66dbtghs8hkrsnccqtuaefi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.creepypastas.valdemar",
+            "certificate_hash": "730958c315f0b4ec7067d436f41c24a03379476a"
+          }
+        },
+        {
+          "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPRrXKkvJ_hi2xlbdZb_nZbB7V7FTJwsk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435758710600:android:52d62019503ec693",
+        "android_client_info": {
+          "package_name": "com.dems.vald.spook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435758710600-crdlcdt7h08skqsbi612fruik4ip087n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dems.vald.spook",
+            "certificate_hash": "730958c315f0b4ec7067d436f41c24a03379476a"
+          }
+        },
+        {
+          "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPRrXKkvJ_hi2xlbdZb_nZbB7V7FTJwsk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435758710600-5ve08rk332gdq6ool2d17qncbhhav8k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

@@ -2,7 +2,8 @@
 <resources>
     <color name="a">#3F51B5</color>
     <color name="s">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="googles">#e46351</color>
+    <color name="colorAccent">#eee</color>
     <color name="colorAccentPress">#e11c5f</color>
     <color name="white">#FFf</color>
     <color name="red">#FFFF404D</color>
@@ -13,4 +14,13 @@
     <color name="black">#000000</color>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
+    <color name="azulnegro">#2b2b37</color>
+    <color name="color_details_desc">#c1c0c0</color>
+
+
+    <color name="profile_background">#2e313d</color>
+    <color name="Background_coins">#4d2fb7</color>
+    <color name="texto_desc_gris">#c1c0c0</color>
+
+
 </resources>
