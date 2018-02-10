@@ -33,10 +33,7 @@
 
     <string-array name="planets_array">
         <item>Seleccion una Categoria:</item>
-        <item>Creepypastas</item>
-        <item>Fantasmas</item>
         <item>LeyendasUrbanas</item>
-        <item>Misticas</item>
         <item>EpisodiosPerdidos</item>
         <item>AsesinosSeriales</item>
     </string-array>

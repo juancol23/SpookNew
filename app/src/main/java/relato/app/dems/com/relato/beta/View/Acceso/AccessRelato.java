@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,6 +49,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import relato.app.dems.com.relato.beta.MenuCustomizeNow;
 import relato.app.dems.com.relato.beta.R;
 
@@ -78,13 +81,20 @@ public class AccessRelato extends AppCompatActivity {
 
     private LinearLayout mLinear_auth,mLinear_auth_footer;
 
+    @BindView(R.id.accesso_login_email) EditText mAccesso_login_email;
+    @BindView(R.id.accesso_login_password) EditText mAccesso_login_password;
+    @BindView(R.id.accesso_login_btn) EditText mAccesso_login_btn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_access_relato);
+        setContentView(R.layout.activity_access_relato_extra);
         mProgress = new ProgressDialog(this);
-
+        ButterKnife.bind(this);
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
 
         checkaccess();
 
@@ -197,7 +207,34 @@ public class AccessRelato extends AppCompatActivity {
 
         checkUserExist();
 
+
+        startLogin();
     }
+
+    private void startLogin() {
+       String login_email = mAccesso_login_email.getText().toString();
+       String login_password = mAccesso_login_password.getText().toString();
+       loginUser(login_email,login_password);
+    }
+
+    private void loginUser(String display_email, String display_password) {
+
+        mAuth.signInWithEmailAndPassword(display_email,display_password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    accesoPermitido();
+                }else{
+                    Log.v("task",""+task);
+                    mProgress.hide();
+                    showSnackBar("Acceso denegado, Intente nuevamente.");
+                }
+            }
+        });
+
+    }
+
+
 
 
     @Override

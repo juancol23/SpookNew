@@ -67,6 +67,11 @@
         <activity
             android:name=".View.Acceso.AccessRelato"
             android:screenOrientation="portrait" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         <activity
             android:name=".View.Acceso.RegisterRelato"
             android:screenOrientation="portrait" />
@@ -109,11 +114,7 @@
         <activity android:name=".View.Util.AlertPopup.ModalCoinsNeeds" />
         <activity android:name=".View.Postear.RandomCoins" />
         <activity android:name=".View.splash.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".View.Fragments.Details.DetailsBestHistory"
              android:parentActivityName=".MenuCustomizeNow"

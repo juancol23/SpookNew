@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/accesso_relato_sangrienta_lectura"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:weightSum="1"
+    tools:context="relato.app.dems.com.relato.beta.View.Acceso.AccessRelato">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/ic_launcher"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/accesso_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:hint="Usuario"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:gravity="left"
+            android:background="@drawable/sign_cuenta"/>
+
+        <EditText
+            android:id="@+id/accesso_login_password"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="14dp"
+            android:hint="Contraseña"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:gravity="left"
+            android:background="@drawable/sign_cuenta"/>
+
+        <Button
+            android:id="@+id/accesso_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Acceder"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/verde"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="No tienes una cuenta,"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" Create una cuenta."
+                android:textColor="#00a694"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="¿Olvidate tu contraseña?,"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Click Aquí."
+                android:textColor="#00a694"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_auth"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/title_sangrienta_lectura"
+        android:gravity="center"
+        android:layout_weight=".5"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="15dp"
+            android:color="@color/white"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/accessRelatoFacebook"
+                android:layout_width="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+
+                facebook:com_facebook_login_text="Inicia sesión con Facebook"
+                facebook:com_facebook_logout_text="Salir de Facebook"
+                android:layout_height="50dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="20dp"
+
+                />
+
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/AccessRelatoGoogle"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:background="@drawable/sing_google_design"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"
+            android:onClick="inicio"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="35dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="22dp"
+                android:clickable="false"
+                android:src="@mipmap/ic_google" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="Inicia sesión con Gmail"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
