@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -83,7 +84,7 @@ public class AccessRelato extends AppCompatActivity {
 
     @BindView(R.id.accesso_login_email) EditText mAccesso_login_email;
     @BindView(R.id.accesso_login_password) EditText mAccesso_login_password;
-    @BindView(R.id.accesso_login_btn) EditText mAccesso_login_btn;
+    @BindView(R.id.accesso_login_btn) Button mAccesso_login_btn;
 
 
     @Override
@@ -108,27 +109,27 @@ public class AccessRelato extends AppCompatActivity {
         mUp_to_down = AnimationUtils.loadAnimation(AccessRelato.this,R.anim.up_to_down);
         mhide_to_bottom = AnimationUtils.loadAnimation(AccessRelato.this,R.anim.down_to_up);
 
-        mAcessRelatoTextTitle.setAnimation(mUp_to_down);
-        mLinear_auth.setAnimation(mhide_to_bottom);
-        mLinear_auth_footer.setAnimation(mhide_to_bottom);
+//        mAcessRelatoTextTitle.setAnimation(mUp_to_down);
+  //      mLinear_auth.setAnimation(mhide_to_bottom);
+//        mLinear_auth_footer.setAnimation(mhide_to_bottom);
 
         String bloodLustFuente= "fuentes/BloodLust.ttf";
         String nightmareFuente= "fuentes/Nigh.ttf";
         this.BloodLust = Typeface.createFromAsset(getAssets(),bloodLustFuente);
         this.Nightmare = Typeface.createFromAsset(getAssets(),nightmareFuente);
 
-        mAcessRelatoTextTitle.setTypeface(BloodLust);
-        mAcessRelatoTextRegister.setTypeface(Nightmare);
-        mAcessRelatoTextForget.setTypeface(Nightmare);
+//        mAcessRelatoTextTitle.setTypeface(BloodLust);
+  //      mAcessRelatoTextRegister.setTypeface(Nightmare);
+    //    mAcessRelatoTextForget.setTypeface(Nightmare);
 
 
         String textTitle = "<font color='#da152c'>Sa</font>ngrien<font color='#da152c'>ta</font><br/><font color='#da152c'>Lec</font>tura";
         String textRegister = "<font color='#da152c'>REGIS</font>TRATE";
         String textForget = "<font color='#da152c'>¿OLVIDÉ LA</font> CONTRASEÑA";
-        mAcessRelatoTextTitle.setText(Html.fromHtml(textTitle));
+//        mAcessRelatoTextTitle.setText(Html.fromHtml(textTitle));
 
-        mAcessRelatoTextRegister.setText(Html.fromHtml(textRegister), TextView.BufferType.SPANNABLE);
-        mAcessRelatoTextForget.setText(Html.fromHtml(textForget), TextView.BufferType.SPANNABLE);
+//        mAcessRelatoTextRegister.setText(Html.fromHtml(textRegister), TextView.BufferType.SPANNABLE);
+  //      mAcessRelatoTextForget.setText(Html.fromHtml(textForget), TextView.BufferType.SPANNABLE);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -208,7 +209,14 @@ public class AccessRelato extends AppCompatActivity {
         checkUserExist();
 
 
-        startLogin();
+        mAccesso_login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLogin();
+
+            }
+        });
+
     }
 
     private void startLogin() {

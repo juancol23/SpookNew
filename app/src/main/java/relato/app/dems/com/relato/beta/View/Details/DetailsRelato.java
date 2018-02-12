@@ -31,6 +31,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import relato.app.dems.com.relato.beta.MenuCustomizeNow;
 import relato.app.dems.com.relato.beta.R;
 import relato.app.dems.com.relato.beta.Service.Sounds.BackgroundSoundService;
 import relato.app.dems.com.relato.beta.View.FeedRelatos;
@@ -53,7 +58,6 @@ public class DetailsRelato extends AppCompatActivity implements
     private DatabaseReference mDatabase,mMensajeShare;
     private ImageView mImage_paralax;
     private TextView mPostTitleDetails,mPostDescDetails;
-    private Button mPostRemoveDetails;
     private ProgressDialog mProgresDialog;
     private TextToSpeech tts;
     private SharedPreferences prefs = null;
@@ -62,11 +66,18 @@ public class DetailsRelato extends AppCompatActivity implements
 
     private AdView mAdView;
 
+
+    @BindView(R.id.postRemoveDetails) Button mPostRemoveDetails;
+
+    private FirebaseAuth mAuth;
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_single_activity2);
+        ButterKnife.bind(this);
 
         MobileAds.initialize(this,"ca-app-pub-2031757066481790/4821023989");
 
@@ -120,9 +131,9 @@ public class DetailsRelato extends AppCompatActivity implements
         mPostTitleDetails = (TextView) findViewById(R.id.postTitleDetails);
         mPostDescDetails = (TextView) findViewById(R.id.postDescDetails);
         mImage_paralax = (ImageView) findViewById(R.id.image_paralax);
-        mPostRemoveDetails = (Button) findViewById(R.id.postRemoveDetails);
         mProgresDialog= new ProgressDialog(this);
 
+        mAuth = FirebaseAuth.getInstance();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Historias");
         mPost_key = getIntent().getExtras().getString("blog_id");
@@ -134,7 +145,7 @@ public class DetailsRelato extends AppCompatActivity implements
                 String post_title = (String) dataSnapshot.child("title").getValue();
                 String post_desc = (String) dataSnapshot.child("desc").getValue();
                 String post_image = (String) dataSnapshot.child("image").getValue();
-                //String post_uid = (String) dataSnapshot.child("uid").getValue();
+                String post_IdMiLectura = (String) dataSnapshot.child("IdMiLectura").getValue();
                 // Toast.makeText(BlogSingleActicity.this,""+post_title+post_desc+post_image,Toast.LENGTH_SHORT).show();
 
                 String textoCentradoDesc = post_desc;
@@ -156,6 +167,21 @@ public class DetailsRelato extends AppCompatActivity implements
                 Log.v("post_all",""+post_image+post_title+post_desc);
                 showToolbar(post_title,true);
 
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                String userId = user.getUid();
+
+                 if(user != null){
+                     Log.v("okey","Logueado");
+                     Log.v("okey",""+mAuth.getCurrentUser().getUid());
+                     Log.v("okey",""+post_IdMiLectura);
+                     Log.v("okey",""+userId);
+                     if(mAuth.getCurrentUser().getUid().equals(post_IdMiLectura)){
+                         Log.v("okey","asd"+mAuth.getCurrentUser().getUid());
+                        mPostRemoveDetails.setVisibility(View.VISIBLE);
+                    }
+
+                 }
             }
 
             @Override
@@ -167,10 +193,10 @@ public class DetailsRelato extends AppCompatActivity implements
         mPostRemoveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProgresDialog.setMessage("Posteando al Blog");
+                mProgresDialog.setMessage("Removiendo Historia");
                 mProgresDialog.show();
                 mDatabase.child(mPost_key).removeValue();
-                startActivity(new Intent(getApplicationContext(),FeedRelatos.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                startActivity(new Intent(getApplicationContext(),MenuCustomizeNow.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                 mProgresDialog.dismiss();
                 finish();
 

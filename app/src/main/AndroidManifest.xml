@@ -66,12 +66,13 @@
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".View.Acceso.AccessRelato"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
         <activity
             android:name=".View.Acceso.RegisterRelato"
             android:screenOrientation="portrait" />
@@ -117,8 +118,8 @@
 
         </activity>
         <activity android:name=".View.Fragments.Details.DetailsBestHistory"
-             android:parentActivityName=".MenuCustomizeNow"
-             android:theme="@style/AppTheme.TranslucentSystemBars">
+            android:parentActivityName=".MenuCustomizeNow"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuCustomizeNow" />

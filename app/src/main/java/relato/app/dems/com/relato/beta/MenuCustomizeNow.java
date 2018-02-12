@@ -68,6 +68,7 @@ import relato.app.dems.com.relato.beta.View.Fragments.Apariciones;
 import relato.app.dems.com.relato.beta.View.Fragments.AsesinosSeriales;
 import relato.app.dems.com.relato.beta.View.Fragments.EpisodiosPerdidos;
 import relato.app.dems.com.relato.beta.View.Fragments.Fantasmas;
+import relato.app.dems.com.relato.beta.View.Fragments.MisCreaciones;
 import relato.app.dems.com.relato.beta.View.Fragments.Misticas;
 import relato.app.dems.com.relato.beta.View.Fragments.FragmentoInicio;
 import relato.app.dems.com.relato.beta.View.Fragments.LeyendasUrbanas;
@@ -226,6 +227,7 @@ public class MenuCustomizeNow extends AppCompatActivity
         /*Comenzando Recycler*/
         //sonido
 
+        setToolbar("Spook");
 
         FragmentoInicio inicio = new FragmentoInicio();
         getSupportFragmentManager().beginTransaction().replace(R.id.contenido_dinamico, inicio)
@@ -366,7 +368,7 @@ public class MenuCustomizeNow extends AppCompatActivity
 
         if(allItem < 5){
             showSnackBar("Necesitas monedas");
-            openCoins();
+            //openCoins();
 
         }else{
             ColorPickerDialog.newBuilder()
@@ -725,13 +727,8 @@ public class MenuCustomizeNow extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-
-            //showSnackBar("Inicio");
-            setToolbar("Sangrienta");
-            FragmentoInicio inicio = new FragmentoInicio();
-            getSupportFragmentManager().beginTransaction().replace(R.id.contenido_dinamico, inicio)
-                    .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
-                    .addToBackStack(null).commit();
+            setToolbar("Spook");
+            menu_inicio();
 
         } else if (id == R.id.nav_creepypastas) {
 
@@ -881,9 +878,11 @@ public class MenuCustomizeNow extends AppCompatActivity
 
         else if (id == R.id.nav_creaciones) {
 
+            setToolbar("Mis Creaciones");
            // setToolbar("Mis Creaciones");
-            showSnackBar("Mis Creaciones");
+            //showSnackBar("Mis Creaciones");
 
+            misCreaciones();
 
         }
 
@@ -909,6 +908,20 @@ public class MenuCustomizeNow extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void menu_inicio() {
+        FragmentoInicio inicio = new FragmentoInicio();
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenido_dinamico, inicio)
+                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
+                .addToBackStack(null).commit();
+    }
+
+    private void misCreaciones() {
+        MisCreaciones misCreaciones = new MisCreaciones();
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenido_dinamico, misCreaciones)
+                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
+                .addToBackStack(null).commit();
     }
 
     public void showSnackBar(String msg) {
@@ -1016,7 +1029,7 @@ public class MenuCustomizeNow extends AppCompatActivity
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCoins();
+               // openCoins();
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
