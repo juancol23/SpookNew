@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class ForgetPasswordRelato extends AppCompatActivity {
         mForgetPasswordCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+/*
                 if (!validarEmail(display_email)){
                     showSnackBar("Email no válido.");
                     mForget_user_email.setError("Email no válido.");
@@ -82,22 +83,26 @@ public class ForgetPasswordRelato extends AppCompatActivity {
                     mProgress.setTitle("Reiniciando Contraseña");
                     mProgress.setMessage("reiniciando su contraseña" );
                     mProgress.setCancelable(false);
-                    mProgress.show();
+                    mProgress.show();*/
                     display_email = mForget_user_email.getText().toString();
 
                     mAuth.sendPasswordResetEmail(display_email)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    hideSoftKeyboard();
                                     if (task.isSuccessful()) {
                                         mProgress.hide();
                                         Log.d("estado", "Email sent."+display_email);
-                                        showSnackBar("Hemos enviado un enlace a su correo "+display_email);
-                                        finish();
+                                        showSnackBar("Hemos enviado un enlace a su correo."+display_email);
+                                        //finish();
+                                    }else{
+                                        mForget_user_email.setError("Email no válido.");
+                                        showSnackBar("Email no registrado. "+display_email);
                                     }
                                 }
                             });
-                }
+               /* }*/
 
             }
         });
@@ -105,8 +110,15 @@ public class ForgetPasswordRelato extends AppCompatActivity {
 
     }
 
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
     private boolean validarEmail(String display_email) {
-        ValidarEmail check = new ValidarEmail(getApplicationContext());
+        ValidarEmail check = new ValidarEmail(this);
         boolean booleamCheckEmail = check.checkEmail(display_email);
         Log.v("checkEmail",""+booleamCheckEmail);
         return booleamCheckEmail;
@@ -115,7 +127,7 @@ public class ForgetPasswordRelato extends AppCompatActivity {
 
     public void showSnackBar(String msg) {
         Snackbar
-                .make(findViewById(R.id.forgetRelato), msg, Snackbar.LENGTH_SHORT)
+                .make(findViewById(R.id.forgetRelato), msg, Snackbar.LENGTH_LONG)
                 .show();
     }
 }

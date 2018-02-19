@@ -175,7 +175,7 @@
 
 
         <FrameLayout
-            android:id="@+id/AccessRelatoGoogle"
+            android:id="@+id/accessRelatoGoogle"
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:background="@drawable/sing_google_design"
@@ -203,12 +203,11 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/AccessRelatoCorreo"
+            android:id="@+id/accessRelatoGoogle"
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:background="@drawable/sign_cuenta"
             android:gravity="center"
-            android:onClick="login"
             android:visibility="gone"
             android:orientation="horizontal">
 

@@ -228,14 +228,13 @@
     </com.google.android.gms.ads.AdView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabPause"
+        android:id="@+id/fav_favorite"
         android:layout_width="@dimen/size_fab"
         android:layout_height="@dimen/size_fab"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/ic_stop"
-        android:visibility="gone"
+        android:src="@mipmap/ic_star_half"
         app:borderWidth="0dp"
-        android:onClick="onClickPause"
+
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|right|end" />
 </android.support.design.widget.CoordinatorLayout>

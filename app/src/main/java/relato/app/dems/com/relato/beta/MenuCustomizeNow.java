@@ -632,7 +632,7 @@ public class MenuCustomizeNow extends AppCompatActivity
 
                         Glide.with(MenuCustomizeNow.this)
                                 .load(post_image)
-                                .thumbnail(Glide.with(MenuCustomizeNow.this).load(R.drawable.item_placeholder))
+                                .thumbnail(Glide.with(MenuCustomizeNow.this).load(R.mipmap.ic_launcher))
                                 .into(mMenu_profile_image);
 
                         mMenu_profile_name.setText(name_);

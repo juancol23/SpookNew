@@ -3,6 +3,7 @@ package relato.app.dems.com.relato.beta.View.Util.ViewHolder;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +23,14 @@ public class RelatoViewHolderStructure_h extends RecyclerView.ViewHolder{
     public TextView mItem_recycler_structure_author_h;
     public ImageView mPost_image_h;
 
+    ImageButton mfavoriteBtn;
+
 
     public RelatoViewHolderStructure_h(View itemView) {
         super(itemView);
         mViewStructure_h = itemView ;
     }
+
 
     public void setTitle_h(String title){
         //mItem_recycler_structure_title.setTypeface(Pacifico);

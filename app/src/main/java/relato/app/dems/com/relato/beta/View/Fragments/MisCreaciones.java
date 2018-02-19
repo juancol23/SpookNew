@@ -94,7 +94,7 @@ public class MisCreaciones extends Fragment {
                         Intent singleBlogIntent = new Intent(getActivity().getApplicationContext(), DetailsRelato.class);
                         singleBlogIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         singleBlogIntent.putExtra("blog_id", post_key);
-                        //startActivity(singleBlogIntent);
+                        startActivity(singleBlogIntent);
 
 
 

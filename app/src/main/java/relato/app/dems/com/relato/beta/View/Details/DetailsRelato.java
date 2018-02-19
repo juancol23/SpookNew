@@ -1,5 +1,6 @@
 package relato.app.dems.com.relato.beta.View.Details;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,9 +69,13 @@ public class DetailsRelato extends AppCompatActivity implements
 
 
     @BindView(R.id.postRemoveDetails) Button mPostRemoveDetails;
-
+    //Favorite
+     android.support.design.widget.FloatingActionButton mFav_favorite;
+    //@BindView(R.id.fav_favorite)
     private FirebaseAuth mAuth;
-
+    //favorite variables
+    private boolean mProcessLike;
+    private DatabaseReference mDatabaseLike;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -78,6 +83,79 @@ public class DetailsRelato extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_single_activity2);
         ButterKnife.bind(this);
+
+        init();
+        mDatabaseLike = FirebaseDatabase.getInstance().getReference().child("Likes");
+        mDatabaseLike.keepSynced(true);
+
+        mPost_key = getIntent().getExtras().getString("blog_id");
+        mAuth = FirebaseAuth.getInstance();
+
+        mFav_favorite = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fav_favorite);
+        mFav_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProcessLike = true;
+                Log.v("TAG_LIKE","LINE click");
+
+                    mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (mProcessLike){
+                                if(dataSnapshot.child(mPost_key).hasChild(mAuth.getCurrentUser().getUid())){
+                                    Log.v("TAG_LIKE","LINE NO");
+                                    mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+                                    mFav_favorite.setImageResource(R.mipmap.ic_star_half);
+                                    mProcessLike = false;
+                                }else{
+                                    mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).setValue("ramdom like");
+
+
+                                    Log.v("TAG_LIKE","LINE ramdom");
+                                    mFav_favorite.setImageResource(R.mipmap.ic_star);
+                                    mProcessLike = false;
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.v("TAG_LIKE","LINE onCancelled");
+
+                        }
+                    });
+            }
+        });
+
+        mDatabaseLike.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(mPost_key).hasChild(mAuth.getCurrentUser().getUid())){
+                    mFav_favorite.setImageResource(R.mipmap.ic_star);
+                    Log.v("TAG_LIKE","Favorito");
+
+                }else{
+                    mFav_favorite.setImageResource(R.mipmap.ic_star_half);
+                    Log.v("TAG_LIKE","no Favorito");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void favoriteInit() {
+
+
+    }
+
+    private void init() {
 
         MobileAds.initialize(this,"ca-app-pub-2031757066481790/4821023989");
 
@@ -102,7 +180,7 @@ public class DetailsRelato extends AppCompatActivity implements
 
 
         final FloatingActionMenu fab = (FloatingActionMenu) findViewById(R.id.menu_floatingAction);
-       // fab.setVisibility(View.VISIBLE);
+        // fab.setVisibility(View.VISIBLE);
 
         NestedScrollView nsv = (NestedScrollView) findViewById(R.id.scroll);
         nsv.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
@@ -112,7 +190,7 @@ public class DetailsRelato extends AppCompatActivity implements
                     fab.setVisibility(View.GONE);
 
                 } else {
-                    fab.setVisibility(View.VISIBLE);
+                    //   fab.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -127,7 +205,7 @@ public class DetailsRelato extends AppCompatActivity implements
         prefs = getSharedPreferences("relato.app.dems.com.relato.beta", MODE_PRIVATE);
 
 
-        validadVisibilidadSonido();
+        //alidadVisibilidadSonido();
         mPostTitleDetails = (TextView) findViewById(R.id.postTitleDetails);
         mPostDescDetails = (TextView) findViewById(R.id.postDescDetails);
         mImage_paralax = (ImageView) findViewById(R.id.image_paralax);
@@ -171,17 +249,17 @@ public class DetailsRelato extends AppCompatActivity implements
 
                 String userId = user.getUid();
 
-                 if(user != null){
-                     Log.v("okey","Logueado");
-                     Log.v("okey",""+mAuth.getCurrentUser().getUid());
-                     Log.v("okey",""+post_IdMiLectura);
-                     Log.v("okey",""+userId);
-                     if(mAuth.getCurrentUser().getUid().equals(post_IdMiLectura)){
-                         Log.v("okey","asd"+mAuth.getCurrentUser().getUid());
+                if(user != null){
+                    Log.v("okey","Logueado");
+                    Log.v("okey",""+mAuth.getCurrentUser().getUid());
+                    Log.v("okey",""+post_IdMiLectura);
+                    Log.v("okey",""+userId);
+                    if(mAuth.getCurrentUser().getUid().equals(post_IdMiLectura)){
+                        Log.v("okey","asd"+mAuth.getCurrentUser().getUid());
                         mPostRemoveDetails.setVisibility(View.VISIBLE);
                     }
 
-                 }
+                }
             }
 
             @Override
@@ -202,12 +280,6 @@ public class DetailsRelato extends AppCompatActivity implements
 
             }
         });
-
-        /*
-        Toast.makeText(BlogSingleActicity.this,""+mPost_key,Toast.LENGTH_SHORT).show();
-        Log.v("clicks","click"+mPost_key);*/
-
-
     }
 
     @Override
@@ -291,10 +363,10 @@ public class DetailsRelato extends AppCompatActivity implements
 
     @Override
     protected void onResume() {
-        android.support.design.widget.FloatingActionButton mFabPlay =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPlay);
-        android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
+        //android.support.design.widget.FloatingActionButton mFabPlay =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPlay);
+       // android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
         //mFabPlay.setVisibility(View.VISIBLE);
-        mFabPause.setVisibility(View.GONE);
+//        mFabPause.setVisibility(View.GONE);
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
             Log.v("Anuncio","click");
@@ -324,9 +396,9 @@ public class DetailsRelato extends AppCompatActivity implements
 
             speakOut();
 
-            android.support.design.widget.FloatingActionButton mFabPlay = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabPlay);
-            android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
-            mFabPlay.setVisibility(View.GONE);
+            //android.support.design.widget.FloatingActionButton mFabPlay = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabPlay);
+            //android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
+           // mFabPlay.setVisibility(View.GONE);
             //mFabPause.setVisibility(View.VISIBLE);
 
 
@@ -339,12 +411,12 @@ public class DetailsRelato extends AppCompatActivity implements
     }
 
     public void onClickPause(View v) {
-        android.support.design.widget.FloatingActionButton mFabPlay = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabPlay);
-        android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
+      //  android.support.design.widget.FloatingActionButton mFabPlay = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabPlay);
+       // android.support.design.widget.FloatingActionButton mFabPause =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPause);
         // mFabPlay.setVisibility(View.VISIBLE);
-        mFabPause.setVisibility(View.GONE);
+        //mFabPause.setVisibility(View.GONE);
 
-        tts.playSilence(100, TextToSpeech.QUEUE_FLUSH,null);
+      //  tts.playSilence(100, TextToSpeech.QUEUE_FLUSH,null);
     }
 
     private void showSnackBar(String msg) {
