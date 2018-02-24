@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdRequest;
@@ -57,16 +58,16 @@ public class DetailsRelato extends AppCompatActivity implements
         TextToSpeech.OnInitListener{
     private String mPost_key = null;
     private DatabaseReference mDatabase,mMensajeShare;
-    private ImageView mImage_paralax;
-    private TextView mPostTitleDetails,mPostDescDetails;
+
     private ProgressDialog mProgresDialog;
     private TextToSpeech tts;
     private SharedPreferences prefs = null;
     private InterstitialAd mInterstitialAd;
 
-
     private AdView mAdView;
-
+    @BindView(R.id.postTitleDetails) TextView mPostTitleDetails;
+    @BindView(R.id.postDescDetails) TextView mPostDescDetails;
+    @BindView(R.id.image_paralax) ImageView mImage_paralax;
 
     @BindView(R.id.postRemoveDetails) Button mPostRemoveDetails;
     //Favorite
@@ -98,33 +99,64 @@ public class DetailsRelato extends AppCompatActivity implements
                 mProcessLike = true;
                 Log.v("TAG_LIKE","LINE click");
 
-                    mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                if(user != null){
+                    mDatabase.child(mPost_key).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (mProcessLike){
-                                if(dataSnapshot.child(mPost_key).hasChild(mAuth.getCurrentUser().getUid())){
-                                    Log.v("TAG_LIKE","LINE NO");
-                                    mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).removeValue();
-                                    mFav_favorite.setImageResource(R.mipmap.ic_star_half);
-                                    mProcessLike = false;
-                                }else{
-                                    mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).setValue("ramdom like");
+                            final String post_title = (String) dataSnapshot.child("title").getValue();
+                            final String post_image = (String) dataSnapshot.child("image").getValue();
+                            final String post_category = (String) dataSnapshot.child("category").getValue();
+                            final String post_author = (String) dataSnapshot.child("author").getValue();
+                            // Toast.makeText(BlogSingleActicity.this,""+post_title+post_desc+post_image,Toast.LENGTH_SHORT).show();
 
+                            mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (mProcessLike){
+                                        if(dataSnapshot.child(mPost_key).hasChild(mAuth.getCurrentUser().getUid())){
+                                            Log.v("TAG_LIKE","LINE NO");
+                                            //  mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+                                            mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+                                            mFav_favorite.setImageResource(R.mipmap.ic_star_half);
+                                            mProcessLike = false;
+                                        }else{
+                                            //mDatabaseLike.child(mPost_key).child(mAuth.getCurrentUser().getUid()).setValue("ramdom like");
+                                            mDatabaseLike.child(mAuth.getCurrentUser().getUid()).child(mPost_key).child("title").setValue(post_title);
+                                            mDatabaseLike.child(mAuth.getCurrentUser().getUid()).child(mPost_key).child("image").setValue(post_image);
+                                            mDatabaseLike.child(mAuth.getCurrentUser().getUid()).child(mPost_key).child("author").setValue(post_author);
+                                            mDatabaseLike.child(mAuth.getCurrentUser().getUid()).child(mPost_key).child("category").setValue(post_category);
 
-                                    Log.v("TAG_LIKE","LINE ramdom");
-                                    mFav_favorite.setImageResource(R.mipmap.ic_star);
-                                    mProcessLike = false;
+                                            Log.v("TAG_LIKE","LINE ramdom");
+                                            mFav_favorite.setImageResource(R.mipmap.ic_star);
+                                            mProcessLike = false;
+                                        }
+                                    }
+
                                 }
-                            }
 
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.v("TAG_LIKE","LINE onCancelled");
+
+                                }
+                            });
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Log.v("TAG_LIKE","LINE onCancelled");
 
                         }
                     });
+
+                }else{
+                        showSnackBar("Necesitas Iniciar Sesión");
+
+                }
+
+
             }
         });
 
@@ -132,15 +164,23 @@ public class DetailsRelato extends AppCompatActivity implements
             @SuppressLint("ResourceAsColor")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(mPost_key).hasChild(mAuth.getCurrentUser().getUid())){
-                    mFav_favorite.setImageResource(R.mipmap.ic_star);
-                    Log.v("TAG_LIKE","Favorito");
 
-                }else{
-                    mFav_favorite.setImageResource(R.mipmap.ic_star_half);
-                    Log.v("TAG_LIKE","no Favorito");
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user != null){
+                    if(mAuth.getCurrentUser().getUid() != null){
+                        if(dataSnapshot.child(mAuth.getCurrentUser().getUid()).hasChild(mPost_key)){
+                            mFav_favorite.setImageResource(R.mipmap.ic_star);
+                            Log.v("TAG_LIKE","Favorito");
 
+                        }else{
+                            mFav_favorite.setImageResource(R.mipmap.ic_star_half);
+                            Log.v("TAG_LIKE","no Favorito");
+
+                        }
+                    }
                 }
+
+
             }
 
             @Override
@@ -166,7 +206,7 @@ public class DetailsRelato extends AppCompatActivity implements
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
 
@@ -206,9 +246,7 @@ public class DetailsRelato extends AppCompatActivity implements
 
 
         //alidadVisibilidadSonido();
-        mPostTitleDetails = (TextView) findViewById(R.id.postTitleDetails);
-        mPostDescDetails = (TextView) findViewById(R.id.postDescDetails);
-        mImage_paralax = (ImageView) findViewById(R.id.image_paralax);
+
         mProgresDialog= new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -246,10 +284,9 @@ public class DetailsRelato extends AppCompatActivity implements
                 showToolbar(post_title,true);
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                String userId = user.getUid();
-
                 if(user != null){
+                    String userId = user.getUid();
+
                     Log.v("okey","Logueado");
                     Log.v("okey",""+mAuth.getCurrentUser().getUid());
                     Log.v("okey",""+post_IdMiLectura);
@@ -260,6 +297,7 @@ public class DetailsRelato extends AppCompatActivity implements
                     }
 
                 }
+
             }
 
             @Override
@@ -293,7 +331,7 @@ public class DetailsRelato extends AppCompatActivity implements
             stopService(svc);
         }
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+            //mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onStart();
@@ -307,7 +345,7 @@ public class DetailsRelato extends AppCompatActivity implements
             tts.shutdown();
         }
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onDestroy();
@@ -317,7 +355,7 @@ public class DetailsRelato extends AppCompatActivity implements
     protected void onStop() {
         tts.playSilence(100, TextToSpeech.QUEUE_FLUSH,null);
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onStop();
@@ -368,7 +406,7 @@ public class DetailsRelato extends AppCompatActivity implements
         //mFabPlay.setVisibility(View.VISIBLE);
 //        mFabPause.setVisibility(View.GONE);
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onResume();
@@ -377,7 +415,7 @@ public class DetailsRelato extends AppCompatActivity implements
     @Override
     protected void onPause() {
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onPause();

@@ -68,6 +68,7 @@ import relato.app.dems.com.relato.beta.View.Fragments.Apariciones;
 import relato.app.dems.com.relato.beta.View.Fragments.AsesinosSeriales;
 import relato.app.dems.com.relato.beta.View.Fragments.EpisodiosPerdidos;
 import relato.app.dems.com.relato.beta.View.Fragments.Fantasmas;
+import relato.app.dems.com.relato.beta.View.Fragments.Favorite;
 import relato.app.dems.com.relato.beta.View.Fragments.MisCreaciones;
 import relato.app.dems.com.relato.beta.View.Fragments.Misticas;
 import relato.app.dems.com.relato.beta.View.Fragments.FragmentoInicio;
@@ -180,10 +181,10 @@ public class MenuCustomizeNow extends AppCompatActivity
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-        if (mInterstitialAd.isLoaded()) {
+       /* if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
             Log.v("Anuncio","click");
-        }
+        }/*
 
         // Use an activity context to get the rewarded video instance.
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -463,7 +464,7 @@ public class MenuCustomizeNow extends AppCompatActivity
 
 
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+            //mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
 
@@ -483,7 +484,7 @@ public class MenuCustomizeNow extends AppCompatActivity
     protected void onResume() {
         validadVisibilidadSonido();
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+            //mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onResume();
@@ -497,7 +498,7 @@ public class MenuCustomizeNow extends AppCompatActivity
         Intent svc = new Intent(getContext(), BackgroundSoundService.class);
         getActivity().stopService(svc);*/
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onStop();
@@ -508,7 +509,7 @@ public class MenuCustomizeNow extends AppCompatActivity
         Intent svc = new Intent(this, BackgroundSoundService.class);
         stopService(svc);
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onPause();
@@ -525,7 +526,7 @@ public class MenuCustomizeNow extends AppCompatActivity
             super.onBackPressed();
         }
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+          //  mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         finish();
@@ -872,24 +873,45 @@ public class MenuCustomizeNow extends AppCompatActivity
                 LoginManager.getInstance().logOut();
                 FirebaseAuth.getInstance().signOut();
                 needAccess();
+            }else{
+                showSnackBar("Necesitas Iniciar Sesión");
+
             }
+
 
         }
 
         else if (id == R.id.nav_creaciones) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            setToolbar("Mis Creaciones");
-           // setToolbar("Mis Creaciones");
-            //showSnackBar("Mis Creaciones");
+            if(user != null) {
+                setToolbar("Mis Creaciones");
+                // setToolbar("Mis Creaciones");
+                //showSnackBar("Mis Creaciones");
 
-            misCreaciones();
+                misCreaciones();
+
+            }else{
+                showSnackBar("Necesitas Iniciar Sesión");
+
+
+            }
+
 
         }
 
         else if (id == R.id.nav_favorite) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            //setToolbar("Favoritos");
-            showSnackBar("Favoritos");
+            if(user != null) {
+                setToolbar("Favoritos");
+                // showSnackBar("Favoritos");
+                misFavoritos();
+            }else{
+                showSnackBar("Necesitas Iniciar Sesión");
+            }
+
+
 
         }
 
@@ -908,6 +930,13 @@ public class MenuCustomizeNow extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void misFavoritos() {
+        Favorite favorite = new Favorite();
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenido_dinamico, favorite)
+                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
+                .addToBackStack(null).commit();
     }
 
     private void menu_inicio() {

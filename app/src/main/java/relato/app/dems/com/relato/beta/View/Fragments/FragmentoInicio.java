@@ -172,7 +172,7 @@ private boolean mProcessLike;
 
         ) {
             @Override
-            protected void populateViewHolder(RelatoViewHolderStructure_h viewHolder, ItemFeed model, int position) {
+            protected void populateViewHolder(RelatoViewHolderStructure_h viewHolder, final ItemFeed model, int position) {
                 final String post_key = getRef(position).getKey();
                 viewHolder.setTitle_h(model.getTitle());
                 viewHolder.setCatergory_h(model.getCategory());
@@ -183,13 +183,20 @@ private boolean mProcessLike;
                 viewHolder.mViewStructure_h.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProgress.setMessage("Accediendo...");
-                        mProgress.show();
+                        //mProgress.setMessage("Accediendo...");
+                       // mProgress.show();
 
                         Intent singleBlogIntent = new Intent(getContext(), DetailsRelato.class);
                         singleBlogIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         singleBlogIntent.putExtra("blog_id", post_key);
                         startActivity(singleBlogIntent);
+                        //mDatabaseHeader.removeValue();
+
+
+                       /* DatabaseReference newPost = mDatabaseHeader.push();
+                        newPost.child("author").setValue(model.getAuthor());
+                        newPost.child("title").setValue(model.getTitle());
+                        newPost.child("category").setValue(model.getCategory());*/
 
                         Log.v("id","id"+post_key);
                     }

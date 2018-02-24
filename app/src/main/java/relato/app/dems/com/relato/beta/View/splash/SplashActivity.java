@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, MenuCustomizeNow.class));
                 finish();
             }
-        }, 2000);
+        }, 100);
 
 
 

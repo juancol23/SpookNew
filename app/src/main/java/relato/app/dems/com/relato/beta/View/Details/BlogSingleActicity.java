@@ -75,7 +75,7 @@ public class BlogSingleActicity extends AppCompatActivity implements
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
 
@@ -242,7 +242,7 @@ public class BlogSingleActicity extends AppCompatActivity implements
             tts.shutdown();
         }
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+          //  mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
 
@@ -253,7 +253,7 @@ public class BlogSingleActicity extends AppCompatActivity implements
     protected void onStop() {
         tts.playSilence(100, TextToSpeech.QUEUE_FLUSH,null);
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         super.onStop();
@@ -300,7 +300,7 @@ public class BlogSingleActicity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+            //mInterstitialAd.show();
             Log.v("Anuncio","click");
         }
         android.support.design.widget.FloatingActionButton mFabPlay =(android.support.design.widget.FloatingActionButton)  findViewById(R.id.fabPlay);
